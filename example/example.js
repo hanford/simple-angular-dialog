@@ -12,8 +12,8 @@ angular
               'Dialog with a fully custom template' +
             '</div>' +
             '<div class="dialog-footer">' +
-              '<button type="button" ng-click="dialog.cancel()" class="ez-button">Cancel</button>' +
-              '<button type="submit" class="ez-button primary loud" ng-click="dialog.submit({object: \'param\'})">Submit</button>' +
+              '<button type="button" ng-click="dialog.cancel()" class="button">Cancel</button>' +
+              '<button type="submit" class="button" ng-click="dialog.submit({object: \'param\'})">Submit</button>' +
             '</div>' +
           '</div>',
         controller: function ($scope, dialog) {

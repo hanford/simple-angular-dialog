@@ -52,7 +52,7 @@
   opacity: 1;
 }
 
-.dialog button {
+.dialog .button {
   border: 1px solid #DDD;
   border-radius: 4px;
   background-color: transparent;

@@ -35,11 +35,14 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
   }
 
   function removeFootPrint (modal) {
+    console.log(modal)
     document.querySelector('.dialog').classList.remove('show-dialog')
     $timeout(function () {
       modal.removeClass('fadeIn')
       $timeout(function () {
         modal.remove()
+        // Remove container in case of multi dialogs
+        document.querySelector('.dialog-container').remove()
       }, 150)
     }, 50)
   }
@@ -74,8 +77,8 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
              '<div style="display:flex;display:-webkit-flex;">' + text + '</div>' +
            '</div>' +
            '<div class="dialog-footer">' +
-             '<button ng-click="decline()">Cancel</button>' +
-             '<button ng-click="accept()">Submit</button>' +
+             '<button class="button" ng-click="decline()">Cancel</button>' +
+             '<button class="button" ng-click="accept()">Submit</button>' +
            '</div>' +
          '</div>' +
        '</div>'
