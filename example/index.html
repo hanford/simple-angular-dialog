@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Angular Dialog</title>
+    <link rel="stylesheet" href="../dist/dialog.css">
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0 auto;
+        max-width: 95%;
+      }
+
+      table,
+      td,
+      th {
+        border:1px solid #DDD
+      }
+
+      .center-content {
+        display: flex;
+        text-align: left;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        flex-direction: column;
+      }
+
+      .main-content {
+        height: 85%;
+        color: #3e85ff;
+      }
+
+      .content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      [flex] {
+        display: flex;
+      }
+
+      .button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 16px;
+        cursor: pointer;
+        justify-content: center;
+        background-color: #3e85ff;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 4px;
+        border: transparent;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .confirm-input {
+        display: inline-block;
+        padding: 14px;
+        border-radius: 4px;
+        display: inline-block;
+        border: 1px solid #DDD;
+        margin: 0 4px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body ng-app="ngDialogExample" ng-controller="ctrl">
+    <a href="https://github.com/hanford/simple-angular-dialog"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <div class="center-content main-content">
+      <h1 class="text-center">simple-angular-dialog</h1>
+
+      <p class="text-center">A super slim <small>(4 kb's!)</small>, angular dialog module with a dead simple API.</p>
+      
+      <div>
+        <button class="button" ng-click="showD()">Example</button>
+      </div>
+
+      <div>
+        <iframe src="https://ghbtns.com/github-btn.html?user=hanford&repo=simple-angular-dialog&type=star&count=true&size=large" frameborder="0" scrolling="0" height="30px" style="display:inline-block;margin:0 auto;width:111px"></iframe>
+      </div>
+
+    </div>
+
+    <div class="content center-content">
+      <h3>Instructions</h3>
+      <p>The dialog modal is super easy to plug in to any anuglar application. Simply add the CSS file and JS file to your HTML file and once you've injected it into your angular module, simply bring it in to any of your components, directives or controllers. Your code should look something like this:</p>
+  <pre>
+    <code>
+angular.module('YourApp', ['simple-angular-dialog'])
+
+  .controller('ctrl', ['dialog', function (dialog) {
+
+    $scope.randomValue = 123
+
+    $scope.showDialog = function () {
+      dialog.show({
+        template: require('./dialog.template.html')
+        controler: function (randomValue, dialog, $scope) {
+          console.log(randomValue)
+
+          $scope.close = function () {
+            return dialog.close()
+          }
+
+        },
+        locals: {
+          randomValue: $scope.randomValue
+        },
+        escapeKey: false
+      })
+        .then(function (data) {
+          console.log('Submit Called', data)
+        })
+        .catch(function () {
+          console.log('Cancel Called')
+        })
+    }
+
+  })
+    </code>
+  </pre>
+
+
+      <div style="text-align:left;width:100%;">
+        <h3 class="text-center">Options</h3>
+        <p>The dialog module has a really easy to use API that allows you to extend it very easily. Showing any <code>dialog</code> initializes a promise. So grabbing the values upon close / cancel is super simple.</p>
+        <br />
+        <table>
+          <thead>
+            <th>Option</th>
+            <th>Explanation</th>
+            <th>Type</th>
+          </thead>
+          <tbody>
+          <tr>
+            <td style="padding:8px"><b><code>template</code></b></td>
+            <td>Template string that you pass in. All template are <b>*required*</b> to have a .dialog-content class ideally wrapping the main content</td>
+            <td>String</td>
+          </tr>
+          <tr>
+            <td style="padding:8px"><b><code>escapeKey</code></b></td>
+            <td>Whether or not to allow the escape key to cancel the modal</td>
+            <td>Boolean</td>
+          </tr>
+          <tr>
+            <td style="padding:8px"><b><code>controller</code></b></td>
+            <td>function or class, you'll want to create a method that calls dialog.close to close the dialog</td>
+            <td>Function</td>
+          </tr>
+          <tr>
+            <td style="padding:8px"><b><code>locals</code></b></td>
+            <td>any values you want access to in the dialog controller function. You need to bring these in like the first example</td>
+            <td>object</td>
+          </tr>
+          <tr>
+            <td style="padding:8px"><b><code>controllerAs</code></b></td>
+            <td>If enabled, the default is 'vm'. You can override this by passing in a String</td>
+            <td>Boolean or String</td>
+          </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:20px">
+          <div class="text-center">
+            <h3>Confirm Dialog </h3>
+          </div>
+          <div class="text-center">
+            <code>dialog.confirm(text)</code>
+          </div>
+          <p>simple-angular-dialog also ships with a <code>dialog.<b>confirm()</b></code> method that provides the template, and takes a string as an argument. The usuage is similar, it creates a promise that is rejected or resolved upon cancel or submit respectively. You can check it out below</p>
+        </div>
+        <div style="display:flex;flex-direction:row;">
+          <input type="text" 
+                 ng-model="$text" 
+                 class="confirm-input" 
+                 placeholder="Confirm Text" 
+                 style="display:inline-block; display:flex;flex:1;">
+          <button ng-click="showConfirm($text || 'Example Text')" 
+                  type="submit" 
+                  class="button" 
+                  style="display: inline-block;display:flex;flex:1;margin-top:0;">
+                Confirm Example</button>
+        </div>
+        <p class="text-center" style="margin-bottom:60px">{{confirmRes}}</p>
+      </div>
+    </div>
+    
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script> -->
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../dist/simple-angular-dialog.min.js"></script>
+    <script src="./compiled-example.js"></script>
+  </body>
+</html>
