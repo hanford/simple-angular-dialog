@@ -34,24 +34,11 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
     confirm: confirm
   }
 
-  function removeFootPrint (modal) {
-    console.log(modal)
-    document.querySelector('.dialog').classList.remove('show-dialog')
-    $timeout(function () {
-      modal.removeClass('fadeIn')
-      $timeout(function () {
-        modal.remove()
-        // Remove container in case of multi dialogs
-        document.querySelector('.dialog-container').remove()
-      }, 150)
-    }, 50)
-  }
-
   function submit (data) {
     if (!deferred) return
 
     if (modal) {
-      removeFootPrint(modal)
+      modal.remove()
     }
 
     return deferred.resolve(data)
@@ -61,7 +48,7 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
     if (!deferred) return
 
     if (modal) {
-      removeFootPrint(modal)
+      modal.remove()
     }
 
     return deferred.reject('Canceled')
@@ -87,12 +74,12 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
     var scope = $rootScope.$new()
 
     scope.decline = function () {
-      removeFootPrint(confirmModal)
+      confirmModal.remove()
       return deferred.reject()
     }
 
     scope.accept = function () {
-      removeFootPrint(confirmModal)
+      confirmModal.remove()
       return deferred.resolve()
     }
 
