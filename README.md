@@ -39,7 +39,7 @@ angular
     $scope.showDialog = function () {
       return dialog.show({
         template: require('./dialog.template.html')
-        controler: function (value, dialog, $scope) {
+        controller: function (value, dialog, $scope) {
           console.log(value)
 
           $scope.close = function () {

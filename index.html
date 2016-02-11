@@ -104,7 +104,7 @@ angular.module('YourApp', ['simple-angular-dialog'])
     $scope.showDialog = function () {
       dialog.show({
         template: require('./dialog.template.html')
-        controler: function (randomValue, dialog, $scope) {
+        controller: function (randomValue, dialog, $scope) {
           console.log(randomValue)
 
           $scope.close = function () {
