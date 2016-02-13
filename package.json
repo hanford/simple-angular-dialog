@@ -3,11 +3,12 @@
   "version": "2.0.1",
   "description": "Angular factory for creating dialogs",
   "main": "./src",
+  "style": "./src/simple-angular-dialog.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/hanford/simple-angular-dialog.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hanford/simple-angular-dialog/issues"
   },
@@ -28,17 +29,19 @@
     "angular": "~1.4.9",
     "browserify": "~13.0.0",
     "assert-semver-operator": "~1.0.1",
-    "exposify": "^0.5.0",
-    "uglify-js": "~2.6.1"
+    "exposify": "^0.5.0"
   },
   "scripts": {
     "test": "standard && assert-operator ./ '~'",
-    "build": "browserify -e ./src/index.js -t [exposify --expose [ --angular=angular ] ]  | uglifyjs > ./dist/simple-angular-dialog.min.js",
+    "build": "browserify -e ./src/index.js -t [exposify --expose [ --angular=angular ] ]  > ./dist/simple-angular-dialog.js && cp src/simple-angular-dialog.css dist/",
     "build-example": "browserify -e ./example/example.js -t [exposify --expose [ --angular=angular ] ] > ./example/compiled-example.js"
   },
   "peerDependencies": {
-    "angular": ">=1.3"
+    "angular": ">=1.3 <2"
   },
+  "files": [
+    "src/"
+  ],
   "standard": {
     "ignore": [
       "./dist/",
