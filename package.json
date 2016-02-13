@@ -39,6 +39,9 @@
   "peerDependencies": {
     "angular": ">=1.3 <2"
   },
+  "files": [
+    "src/"
+  ],
   "standard": {
     "ignore": [
       "./dist/",
