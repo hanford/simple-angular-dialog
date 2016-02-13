@@ -32,7 +32,7 @@
   },
   "scripts": {
     "test": "standard && assert-operator ./ '~'",
-    "build": "browserify -e ./src/index.js -t [exposify --expose [ --angular=angular ] ]  > ./dist/simple-angular-dialog.js",
+    "build": "browserify -e ./src/index.js -t [exposify --expose [ --angular=angular ] ]  > ./dist/simple-angular-dialog.js && cp src/simple-angular-dialog.css dist/",
     "build-example": "browserify -e ./example/example.js -t [exposify --expose [ --angular=angular ] ] > ./example/compiled-example.js"
   },
   "peerDependencies": {
