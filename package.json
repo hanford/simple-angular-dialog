@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/hanford/simple-angular-dialog.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hanford/simple-angular-dialog/issues"
   },
