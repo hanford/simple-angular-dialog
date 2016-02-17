@@ -36,7 +36,7 @@
 .dialog-content {
   padding: 12px;
   overflow: scroll;
-  /*max-height: 500px;*/
+  max-height: 400px;
   -webkit-order: 1;
   order: 1;
   flex-direction: column;
