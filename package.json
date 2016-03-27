@@ -1,6 +1,6 @@
 {
   "name": "simple-angular-dialog",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Angular factory for creating dialogs",
   "main": "./src",
   "style": "./src/simple-angular-dialog.css",
