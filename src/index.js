@@ -122,7 +122,7 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
       overlay = '<div class="dialog-container">'
     }
 
-    modal = angular.element(overlay + '<div class="dialog">' + closeX + '<div style="overflow:auto">' + options.template + '</div></div></div>')
+    modal = angular.element(overlay + '<div class="dialog" ng-click="$event.stopPropagation()">' + closeX + '<div style="overflow:auto">' + options.template + '</div></div></div>')
 
     var keyDown = function (event) {
       if (event.keyCode === 27) {
