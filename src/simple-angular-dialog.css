@@ -15,7 +15,6 @@
 
 .dialog {
   background-color: white;
-  overflow: auto;
   border-radius: 4px;
   transform: scale(0.5) translateY(600px);
   opacity: 0;
@@ -26,6 +25,7 @@
   max-height: 80%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .dialog.show-dialog {
@@ -35,7 +35,7 @@
 
 .dialog-content {
   padding: 12px;
-  overflow: scroll;
+  overflow: auto;
   max-height: 400px;
   -webkit-order: 1;
   order: 1;
@@ -73,10 +73,21 @@
   cursor: pointer;
 }
 
-.dialog.confirm-button {
+.dialog.confirm-button {}
 
-}
+.dialog.decline-button {}
 
-.dialog.decline-button {
-
+.dialog-x {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  padding: 4px 8px;
+  border-radius: 50%;
+  color: white;
+  font-family: sans-serif;
+  background-color: #555;
+  font-weight: 900;
+  z-index: 5;
+  font-size: 14px;
+  box-shadow: 0 2px 2px #565656;
 }

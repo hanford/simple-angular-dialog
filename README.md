@@ -67,6 +67,8 @@ dialog.show({
   controller: function () {},
   controllerAs: 'vm',
   escapeKey: false,
+  overlayClose: false,
+  hasX: true,
   locals: {key: param}
  })
 

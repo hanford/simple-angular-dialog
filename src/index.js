@@ -20,6 +20,8 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
     template: null,
     controller: null,
     escapeKey: true,
+    hasX: false,
+    overlayClose: true,
     locals: {}
   }
 
@@ -99,11 +101,28 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
   }
 
   function show (options) {
-    deferred = $q.defer()
+    var closeX
+    var overlay
 
+    deferred = $q.defer()
     options = extend({}, defaults, options)
 
-    modal = angular.element('<div class="dialog-container"><div class="dialog">' + options.template + '</div></div>')
+    // if hasX is true, we add an X to the right of the dialog
+    if (options.hasX === true) {
+      closeX = '<button class="dialog-x" ng-click="close()">&#10005;</button>'
+    } else {
+      closeX = ''
+    }
+
+    // if overlayClose is true, we add a ngClick to close the dialog
+    // on the backdrop
+    if (options.overlayClose === true) {
+      overlay = '<div class="dialog-container" ng-click="close()">'
+    } else {
+      overlay = '<div class="dialog-container">'
+    }
+
+    modal = angular.element(overlay + '<div class="dialog">' + closeX + '<div style="overflow:auto">' + options.template + '</div></div></div>')
 
     var keyDown = function (event) {
       if (event.keyCode === 27) {
@@ -123,6 +142,10 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
     var ctrl
     var locals
     var scope = $rootScope.$new()
+
+    scope.close = function () {
+      return closeFn()
+    }
 
     if (options.controller) {
       locals = extend({$scope: scope}, options.locals)
