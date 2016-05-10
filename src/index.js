@@ -167,7 +167,10 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
 
     $timeout(function () {
       $timeout(function () {
-        document.querySelector('.dialog').classList.add('show-dialog')
+        var dialog = document.querySelector('.dialog')
+        if (dialog) {
+          dialog.classList.add('show-dialog')
+        }
       }, 200)
       modal.addClass('fadeIn')
     }, 0)
