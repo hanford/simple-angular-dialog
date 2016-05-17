@@ -62,7 +62,7 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
     var confirmModal = angular.element(
         '<div class="dialog-container">' +
          '<div class="dialog" id="confirm">' +
-           '<div class="dialog-body text-center" style="min-width:250px;min-height:50px;display:flex;display:-webkit-flex;justify-content:center;align-items:center;padding:8px">' +
+           '<div class="dialog-body text-center dialog-confirm">' +
              '<div style="display:flex;display:-webkit-flex;">' + text + '</div>' +
            '</div>' +
            '<div class="dialog-footer">' +
@@ -122,7 +122,7 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
       overlay = '<div class="dialog-container">'
     }
 
-    modal = angular.element(overlay + '<div class="dialog" ng-click="$event.stopPropagation()">' + closeX + options.template + '</div></div>')
+    modal = angular.element(overlay + '<div class="dialog" ng-click="$event.stopPropagation()">' + closeX + '<div style="overflow:auto;">' + options.template + '</div>' + '</div></div>')
 
     var keyDown = function (event) {
       if (event.keyCode === 27) {
