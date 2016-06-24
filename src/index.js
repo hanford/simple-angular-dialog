@@ -144,7 +144,8 @@ function ngDialog ($document, $compile, $rootScope, $controller, $timeout, $q) {
     var scope = $rootScope.$new()
 
     scope.close = function () {
-      return closeFn()
+      closeFn()
+      return deferred.reject()
     }
 
     if (options.controller) {
