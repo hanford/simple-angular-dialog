@@ -1,12 +1,12 @@
 ## simple-angular-dialog
 
-[Live Demo!](https://hanford.github.io/simple-angular-dialog)
+[Live Demo!](https://simple-angular-dialog.jackhanford.com)
 
 This is a super easy, small library for creating dynamic dialogs with angularjs. Calling ```dialog.show``` or ```dialog.confirm``` creates a promise, which is either resolved or rejected.
 
 [![NPM][dialog-icon]][dialog-url]
 
-#### Installation  
+#### Installation
 
 ```
 $ npm install simple-angular-dialog --save
@@ -14,7 +14,7 @@ $ npm install simple-angular-dialog --save
 
 Add simple-angular-dialog to your dependencies
 
-```
+```html
   <link rel="stylesheet" type="text/css" href="dialog.css">
 </head>
 <body>
@@ -29,7 +29,7 @@ Add simple-angular-dialog to your dependencies
 Then in your app should look something like this:
 
 
-```
+```js
 angular
   .module('YourApp', ['simple-angular-dialog'])
   .controller('ctrl', ['dialog', function (dialog) {
@@ -61,7 +61,7 @@ angular
 ```
 
 #### Usage / API
-```
+```js
 dialog.show({
   template: require('./dialog.template.html'),
   controller: function () {},
@@ -73,7 +73,7 @@ dialog.show({
  })
 
 dialog.confirm('Confirm Text')
-```  
+```
 
 
 ![Low frame gif](./example.gif)
